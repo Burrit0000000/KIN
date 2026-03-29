@@ -32,7 +32,7 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #000;
-    background-image: url('../assets/vortex_cover.png');
+    background-image: url('./assets/vortex_cover.png');
     background-size: cover;
     background-position: center;
     overflow: hidden;
@@ -286,8 +286,8 @@ def process_markdown():
 <header class="hero">
     <div class="hero-overlay"></div>
     <nav class="hero-nav">
-        <img src="../assets/kin-logo-mark.png" alt="KIN Logo">
-        <img src="../assets/kr8tiv-wordmark.png" alt="KR8TIV Wordmark">
+        <img src="./assets/kin-logo-mark.png" alt="KIN Logo">
+        <img src="./assets/kr8tiv-wordmark.png" alt="KR8TIV Wordmark">
     </nav>
     <div class="hero-content">
         <h1 class="hero-title">KIN</h1>
@@ -360,7 +360,7 @@ def process_markdown():
                                     html_parts.append(f'''
         <div class="genesis-card">
             <div class="genesis-img-wrapper">
-                <img src="../assets/{img}" class="genesis-img" alt="{name}" />
+                <img src="./assets/{img}" class="genesis-img" alt="{name}" />
             </div>
             <div class="genesis-content">
                 <h4 style="color: {color};">{name}</h4>
@@ -422,7 +422,7 @@ def process_markdown():
     html_parts.append("""
 </main>
 <footer>
-    <img src="../assets/kr8tiv-wordmark.png" alt="KR8TIV AI">
+    <img src="./assets/kr8tiv-wordmark.png" alt="KR8TIV AI">
     <p>Confidential — Q2 2026. All rights reserved.</p>
 </footer>
 </body></html>
@@ -431,7 +431,7 @@ def process_markdown():
     html_text = '\n'.join(html_parts)
     html_text = html_text.replace('</ul>\n<ul>', '\n')
     
-    with open('/Users/xeniabusigin/.gemini/antigravity/scratch/KR8TIV/src/document.html', 'w') as f:
+    with open('/Users/xeniabusigin/.gemini/antigravity/scratch/KR8TIV/index.html', 'w') as f:
         f.write(html_text)
 
 process_markdown()
