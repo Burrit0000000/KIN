@@ -176,7 +176,7 @@ def process_markdown():
     html_parts = [css]
     
     # Very simple markdown parser for the whitepaper
-    lines = md.split('\\n')
+    lines = md.split('\n')
     for line in lines:
         line_str = line.strip()
         if not line_str or line_str == '***' or line_str.startswith('# KIN:'):
@@ -210,8 +210,8 @@ def process_markdown():
 </body></html>
 """)
     
-    html_text = '\\n'.join(html_parts)
-    html_text = html_text.replace('</ul>\\n<ul>', '\\n')
+    html_text = '\n'.join(html_parts)
+    html_text = html_text.replace('</ul>\n<ul>', '\n')
     
     with open('/Users/xeniabusigin/.gemini/antigravity/scratch/KR8TIV/whitepaper.html', 'w') as f:
         f.write(html_text)
