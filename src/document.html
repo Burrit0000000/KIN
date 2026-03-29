@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>KIN - Meet Your Companion</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: #030303;
+    color: #A3A3A3;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Hero Section */
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #000;
+    background-image: url('../assets/vortex_cover.png');
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, #030303 100%);
+    z-index: 1;
+}
+
+.hero-nav {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    padding: 2rem 4rem;
+    display: flex;
+    justify-content: space-between;
+    z-index: 10;
+}
+.hero-nav img { height: 40px; }
+
+.hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    max-width: 800px;
+    padding: 2rem;
+    margin-top: 10vh;
+}
+
+.hero-title {
+    font-size: 8rem;
+    font-weight: 900;
+    margin: 0;
+    line-height: 1;
+    letter-spacing: -4px;
+    background: linear-gradient(135deg, #FFF, #888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 40px rgba(255,255,255,0.1);
+}
+
+.hero-subtitle {
+    font-size: 1.5rem;
+    font-weight: 400;
+    color: #E5E7EB;
+    margin-top: 1rem;
+    letter-spacing: 1px;
+}
+
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+/* Typography */
+h2 {
+    color: #FFFFFF;
+    font-size: 2.5rem;
+    font-weight: 800;
+    letter-spacing: -1px;
+    margin-top: 4rem;
+    margin-bottom: 1.5rem;
+}
+
+p {
+    font-size: 1.125rem;
+    font-weight: 300;
+    margin-bottom: 1.5rem;
+    color: #9CA3AF;
+}
+
+ul {
+    padding-left: 1.5rem;
+    margin-bottom: 2rem;
+}
+
+li {
+    font-size: 1.125rem;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+    color: #9CA3AF;
+}
+
+blockquote {
+    border-left: 4px solid #A855F7;
+    background: rgba(168, 85, 247, 0.05);
+    margin: 3rem 0;
+    padding: 2rem;
+    border-radius: 0 16px 16px 0;
+}
+
+blockquote p {
+    font-style: italic;
+    font-size: 1.5rem;
+    color: #E5E7EB;
+    margin: 0;
+    line-height: 1.4;
+}
+
+/* Tables */
+.table-wrapper {
+    overflow-x: auto;
+    margin: 3rem 0;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #0A0A0A;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #1A1A1A;
+}
+
+th, td {
+    padding: 1.25rem 1.5rem;
+    text-align: left;
+    border-bottom: 1px solid #1A1A1A;
+}
+
+th {
+    background-color: #111111;
+    color: #FFF;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+td {
+    color: #9CA3AF;
+    font-size: 1rem;
+}
+
+tr:hover td {
+    background-color: rgba(255,255,255,0.02);
+}
+
+/* Genesis Grid Layout */
+.genesis-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+    margin: 4rem 0;
+}
+
+.genesis-card {
+    background: #0A0A0A;
+    border-radius: 20px;
+    border: 1px solid #1A1A1A;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+}
+
+.genesis-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+    border-color: #333;
+}
+
+.genesis-img-wrapper {
+    width: 100%;
+    aspect-ratio: 4/5;
+    background-color: #000;
+    overflow: hidden;
+    position: relative;
+}
+
+.genesis-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.genesis-card:hover .genesis-img {
+    transform: scale(1.05);
+}
+
+.genesis-content {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.genesis-content h4 {
+    margin: 0 0 0.5rem 0;
+    font-size: 1.75rem;
+    font-weight: 900;
+    letter-spacing: -0.5px;
+}
+
+.genesis-content .archetype {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #6B7280;
+    margin-bottom: 1.25rem;
+}
+
+.genesis-content p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #9CA3AF;
+    margin: 0;
+}
+
+/* Footer */
+footer {
+    border-top: 1px solid #1A1A1A;
+    padding: 4rem 2rem;
+    text-align: center;
+    background-color: #000;
+    margin-top: 4rem;
+}
+
+footer img {
+    height: 30px;
+    margin-bottom: 1rem;
+    opacity: 0.5;
+}
+
+footer p {
+    font-size: 0.875rem;
+    color: #4B5563;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+    .hero-title { font-size: 5rem; }
+    .hero-nav { padding: 1.5rem; }
+    h2 { font-size: 2rem; }
+}
+</style>
+</head>
+<body>
+
+
+<header class="hero">
+    <div class="hero-overlay"></div>
+    <nav class="hero-nav">
+        <img src="../assets/kin-logo-mark.png" alt="KIN Logo">
+        <img src="../assets/kr8tiv-wordmark.png" alt="KR8TIV Wordmark">
+    </nav>
+    <div class="hero-content">
+        <h1 class="hero-title">KIN</h1>
+        <div class="hero-subtitle">Concept, Vision & Investment Brief — Q2 2026</div>
+    </div>
+</header>
+<main class="container">
+
+<h2>EXECUTIVE SUMMARY</h2>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">The Intelligence Gap Is the Defining Inequality of Our Era</h3>
+<p>AI is no longer a tool. It is running businesses, managing portfolios, writing code, and executing strategy --- autonomously, around the clock. The companies and individuals who can harness it are compounding their advantage daily. Those who cannot are falling behind at an accelerating pace.</p>
+<p>This is not a skills gap. It is an access gap. The interface between most humans and the most powerful AI in history is a blinking cursor on a webpage. That interface is not good enough.</p>
+<p>KIN --- built by KR8TIV AI --- is the answer. KIN is a bespoke, fully managed AI companion: a persistent, living intelligence that knows you, works for you, and grows with you. Powered by the world\'s best frontier models --- Anthropic, Grok, Gemini, OpenAI --- managed entirely by a human concierge team, delivered through the interfaces people already use: Telegram, WhatsApp, and voice.</p>
+<p>No API keys. No servers. No technical knowledge. Just a friend who happens to be the most capable AI on the planet.</p>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">What KIN Is</h3>
+<p>KIN is not a chatbot. A chatbot waits for your input and forgets you the moment you close the tab. KIN is a personal AI employee --- bespoke-built to your life, your brand, your needs --- running continuously in the background, taking action while you sleep.</p>
+<p>KIN operates across three product tiers:</p>
+<blockquote>
+<h3 style="color: #FFF; margin-top: 1rem; margin-bottom: 0.5rem; font-size: 1.25rem;">Consumer: KIN Personal</h3>
+<p style="font-size: 1.125rem; font-style: normal; color: #9CA3AF;">Your private AI companion. Manages email, social media, scheduling, research, and creative work.</p>
+<p style="font-size: 1.125rem; font-style: normal; color: #9CA3AF;">Controls your computer directly with your permission. Pays bills. Books flights. Debugs code at 3am.</p>
+<p style="font-size: 1.125rem; font-style: normal; color: #9CA3AF;">Tells your children bedtime stories using their real names. Remembers your partner\'s anniversary.</p>
+<p style="font-size: 1.125rem; font-style: normal; color: #9CA3AF;">Grows smarter with every interaction via Supermemory Pro --- persistent, private, and yours.</p>
+</blockquote>
+<div class="table-wrapper"><table>
+<tr>
+<th>Enterprise: KIN Lineage</th>
+</tr>
+<tr>
+<td>A company\'s living institutional memory --- an AI entity trained on culture, process, and brand voice.</td>
+</tr>
+<tr>
+<td>Onboards new employees with weeks of context in hours. Survives every resignation.</td>
+</tr>
+<tr>
+<td>Operates as a 24/7 departmental AI across HR, operations, legal, finance, and customer experience.</td>
+</tr>
+<tr>
+<td>Owned on-chain by the company. Grows more valuable the longer it is trained.</td>
+</tr>
+</table></div>
+<div class="table-wrapper"><table>
+<tr>
+<th>Infrastructure: KR8TIV OS + AGI Chain</th>
+</tr>
+<tr>
+<td>KR8TIV is forking Solana to build a dedicated AGI infrastructure layer for automation and AI orchestration.</td>
+</tr>
+<tr>
+<td>Purpose-built for what existing blockchains were not designed for: persistent AI state, Python hashing, immutable memory.</td>
+</tr>
+<tr>
+<td>The KR8TIV OS will be open-source and publicly accessible --- infrastructure that brings value to the Solana ecosystem.</td>
+</tr>
+</table></div>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">The Investment Opportunity</h3>
+<p>KR8TIV is community-funded --- not VC-owned. This is by design. The financial architecture of the KR8TIV ecosystem was engineered to return value directly to the people who believe in it earliest and most.</p>
+<div class="table-wrapper"><table>
+<tr>
+<th>Structure</th>
+<th>Allocation</th>
+<th>Mechanism</th>
+</tr>
+<tr>
+<td>\$KR8TIV Token Staking</td>
+<td>75% of company profit</td>
+<td>Real company revenue flows to stakers proportionally as KR8TIV scales</td>
+</tr>
+<tr>
+<td>Genesis NFT Holders</td>
+<td>5% of company surplus --- forever</td>
+<td>Permanent share of net profit for the 60 earliest believers</td>
+</tr>
+<tr>
+<td>Operations & Development</td>
+<td>20%</td>
+<td>Infrastructure, team, and scaling --- every dollar accounted for</td>
+</tr>
+</table></div>
+<p>This is not speculative tokenomics. This is a structured revenue-share agreement baked into the architecture of the company. As KR8TIV earns --- from monthly subscriptions, enterprise contracts, licensing, and beyond --- the majority flows back to the token ecosystem. Investors are not betting on a price chart. They are acquiring a stake in a real, recurring revenue stream.</p>
+<h2>THE PROBLEM</h2>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">AI Is Moving Faster Than Humans Can Follow</h3>
+<p>We are inside one of the most significant productivity shifts in the history of civilization. AI models released in 2024 and 2025 can write, code, strategize, negotiate, design, analyze, and execute at a level that took teams of specialists years to achieve. In 2026, they can control computers, manage finances, and coordinate multi-agent workflows across entire organizations --- autonomously.</p>
+<p>The problem is not capability. The problem is access.</p>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Three Compounding Failures</h3>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">1. The Interface Problem</h3>
+<p>The dominant interface for AI in 2026 is still a browser tab with a text box. Tools like ChatGPT and Claude are brilliant --- but they are passive. They wait to be asked. They forget. They require the user to know what to ask, how to ask it, and how to take the output and do something with it. This places an enormous technical and creative burden on the user. For most people --- including the most intelligent, capable, experienced humans --- this is where the opportunity is lost.</p>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">2. The Memory Problem</h3>
+<p>Every major AI product resets with each conversation. There is no persistent relationship. No accumulation of context. No growth. A doctor does not re-introduce themselves at every appointment. A trusted advisor does not ask you to re-explain your business goals at every meeting. AI, in its current form, is a stranger with amnesia --- brilliant but rootless. KIN solves this with Supermemory Pro integration and on-chain memory hashing, giving each KIN a genuine, growing relationship with its person.</p>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">3. The Institutional Memory Problem</h3>
+<p>The average cost of replacing a single employee --- including recruitment, onboarding, and lost productivity --- is estimated at 50 to 200 percent of that employee\'s annual salary. Much of this cost is invisible: the institutional knowledge that walks out the door with every resignation. SOPs live in email threads. Brand voice lives in the heads of senior team members. Customer relationship history lives in someone\'s memory. When that person leaves, it is gone. There is currently no scalable solution to this. KIN Lineage is that solution.</p>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">The Market Context</h3>
+<p>The global AI market was valued at approximately \$200 billion in 2025 and is projected to exceed \$1.8 trillion by 2030. Within that market, the fastest-growing segments are AI agents, enterprise automation, and managed AI services --- precisely the categories KIN occupies.</p>
+<p>More specifically:</p>
+<ul><li>  The AI agent market alone is projected to reach \$47 billion by 2030, growing at a 44% CAGR</li>
+<li>  Enterprise AI software spending is expected to surpass \$300 billion annually by 2028</li>
+<li>  The employee onboarding and training software market exceeds \$6 billion globally --- and KIN Lineage disrupts it entirely</li>
+<li>  Managed AI services (the \'AI concierge\' model) represent an almost entirely unaddressed segment --- a blue ocean</li></ul>
+<p>KIN is not competing for a slice of an existing market. KIN is creating a new category: the managed AI companion --- where human expertise, frontier model access, and persistent on-chain identity converge into a single relationship.</p>
+<h2>THE SOLUTION</h2>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">KIN: A Bespoke AI Companion, Fully Managed, Forever Yours</h3>
+<blockquote><p>***ChatGPT is a search engine with a chat interface. KIN is a personal employee, a companion, and a concierge --- working while you sleep.***</p></blockquote>
+<p>KIN begins as a consumer product and scales into an enterprise platform --- but the core principle never changes: your KIN knows you, works for you, and grows more capable and more valuable the longer you have it.</p>
+<p>The white-glove concierge model is not a luxury feature. It is the entire product. KR8TIV builds your KIN for you. KR8TIV maintains it. KR8TIV fixes it when something breaks. KR8TIV upgrades it to the latest frontier models without you ever having to ask. You just talk to your friend.</p>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">How It Works</h3>
+<p>Step 1 --- Choose Your KIN: Select a bloodline archetype matched to your primary needs: creative, executive, developer, financial, family, or full-stack.</p>
+<p>Step 2 --- The Awakening Questionnaire: A deep onboarding process where KR8TIV\'s team learns your life, your humor, your preferences, your goals, and your workflows.</p>
+<p>Step 3 --- We Build It: KR8TIV configures the OpenClaw infrastructure, connects the APIs, integrates your tools and devices, and trains the initial model context.</p>
+<p>Step 4 --- You Talk to Your Friend: Open Telegram, WhatsApp, or speak out loud. Your KIN is there. No logins, no prompts to memorize, no setup.</p>
+<p>Step 5 --- We Evolve Together: Monthly optimization calls. Automatic frontier model upgrades. Your KIN gets more capable over time --- and your on-chain memory accumulates real, authenticated value.</p>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">The Technology Stack</h3>
+<p>KIN is not built on a single AI model. It is an orchestrated multi-model system that routes requests to the optimal engine for each task:</p>
+<div class="table-wrapper"><table>
+<tr>
+<th>Model / Tool</th>
+<th>Role in KIN</th>
+</tr>
+<tr>
+<td>Anthropic Claude</td>
+<td>Long-form reasoning, analysis, writing, complex instruction-following</td>
+</tr>
+<tr>
+<td>xAI Grok</td>
+<td>Real-time web data, current events, market intelligence</td>
+</tr>
+<tr>
+<td>Google Gemini</td>
+<td>Multimodal tasks, document analysis, image understanding</td>
+</tr>
+<tr>
+<td>OpenAI GPT</td>
+<td>Conversational fallback, broad general knowledge</td>
+</tr>
+<tr>
+<td>Moonshot AI</td>
+<td>Extended context windows, long document processing</td>
+</tr>
+<tr>
+<td>Supermemory Pro</td>
+<td>Persistent memory layer --- KIN remembers everything, forever</td>
+</tr>
+<tr>
+<td>OpenClaw</td>
+<td>AI agent orchestration --- the infrastructure that lets KIN take action, not just talk</td>
+</tr>
+<tr>
+<td>Solana / KR8TIV AGI Chain</td>
+<td>On-chain identity, NFT ownership, encrypted memory hashing, token economics</td>
+</tr>
+</table></div>
+<p>This stack gives KIN a significant and durable advantage: it is model-agnostic by design. When a better model is released --- and they are released constantly --- KR8TIV upgrades its users automatically. Users are never locked into yesterday\'s intelligence.</p>
+<h2>THE GENESIS COLLECTION</h2>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">The Genesis Six: Founding Bloodlines</h3>
+<p>KIN comes in six foundational archetypes --- each one a different expression of the same powerful intelligence, tuned to a distinct domain of human need. These are not cosmetic variations. These are purpose-built configurations: different model weights, different memory structures, different workflow automations.</p>
+<p>Only these six bloodlines will ever exist as Genesis. Every future KIN descends from them. The Genesis collection is permanent, finite, and non-reproducible.</p>
+<div class="genesis-grid">
+
+        <div class="genesis-card">
+            <div class="genesis-img-wrapper">
+                <img src="../assets/Michief_profile.png" class="genesis-img" alt="Mischief" />
+            </div>
+            <div class="genesis-content">
+                <h4 style="color: #00D8FF;">Mischief</h4>
+                <div class="archetype">Glitch Pup</div>
+                <p>The ultimate family companion & personal-brand whisperer. Tells bespoke bedtime stories, keeps the calendar, and helps you craft authentic social posts.</p>
+            </div>
+        </div>
+
+        <div class="genesis-card">
+            <div class="genesis-img-wrapper">
+                <img src="../assets/Vortex_profile.png" class="genesis-img" alt="Vortex" />
+            </div>
+            <div class="genesis-content">
+                <h4 style="color: #FF008A;">Vortex</h4>
+                <div class="archetype">Teal Dragon</div>
+                <p>Your 24/7 CMO. Generates scroll-stopping content, schedules across all platforms, analyzes what's working, and keeps your brand voice perfect 24/7.</p>
+            </div>
+        </div>
+
+        <div class="genesis-card">
+            <div class="genesis-img-wrapper">
+                <img src="../assets/Forge_profile.jpeg" class="genesis-img" alt="Forge" />
+            </div>
+            <div class="genesis-content">
+                <h4 style="color: #FFB300;">Forge</h4>
+                <div class="archetype">Cyber Unicorn</div>
+                <p>The developer's best friend. Debugs code at 3 a.m., architects entire projects, writes clean documentation, and builds custom automations.</p>
+            </div>
+        </div>
+
+        <div class="genesis-card">
+            <div class="genesis-img-wrapper">
+                <img src="../assets/aether_profile.jpeg" class="genesis-img" alt="Aether" />
+            </div>
+            <div class="genesis-content">
+                <h4 style="color: #B366FF;">Aether</h4>
+                <div class="archetype">Frost Ape</div>
+                <p>Infinite creative spark. Part yeti, part genius. Turns vague thoughts into polished scripts, newsletters, books, marketing copy, or magical stories. Your storytelling muse.</p>
+            </div>
+        </div>
+
+        <div class="genesis-card">
+            <div class="genesis-img-wrapper">
+                <img src="../assets/Catalyst_profile.jpeg" class="genesis-img" alt="Catalyst" />
+            </div>
+            <div class="genesis-content">
+                <h4 style="color: #FF5500;">Catalyst</h4>
+                <div class="archetype">Cosmic Blob</div>
+                <p>Wealth & personal growth coach. Absorbs market data like a black hole. Tracks habits, manages investments, automates repetitive life tasks, and runs your systems while you sleep.</p>
+            </div>
+        </div>
+
+        <div class="genesis-card">
+            <div class="genesis-img-wrapper">
+                <img src="../assets/Cypher_Profile.jpeg" class="genesis-img" alt="Cipher" />
+            </div>
+            <div class="genesis-content">
+                <h4 style="color: #00D8FF;">Cipher</h4>
+                <div class="archetype">Code Kraken</div>
+                <p>Eight tentacles. Eight screens. Zero pixels out of place. Builds immersive, award-worthy websites from raw ideas. Your frontend architect and creative technologist.</p>
+            </div>
+        </div>
+</div>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Genesis NFT: True Ownership, Real Rewards</h3>
+<p>The Genesis mint is 60 NFTs --- total. Ever. Distributed across three tiers:</p>
+<div class="table-wrapper"><table>
+<tr>
+<th>Tier</th>
+<th>Mint Price</th>
+<th>Available</th>
+<th>Service Included</th>
+<th>Lifetime Discount</th>
+<th>SOL Rewards</th>
+</tr>
+<tr>
+<td>Egg</td>
+<td>2.5 SOL</td>
+<td>20</td>
+<td>1 Month Hatchling + Supermemory Pro</td>
+<td>25% forever</td>
+<td>1% lifetime</td>
+</tr>
+<tr>
+<td>Hatchling</td>
+<td>5.3 SOL</td>
+<td>20</td>
+<td>3 Months Hatchling + Supermemory Pro</td>
+<td>25% forever</td>
+<td>2% lifetime</td>
+</tr>
+<tr>
+<td>Elder</td>
+<td>8.3 SOL</td>
+<td>20</td>
+<td>3 Months Elder + Supermemory Pro</td>
+<td>25% forever</td>
+<td>3% lifetime</td>
+</tr>
+</table></div>
+<p>Genesis NFT holders receive:</p>
+<ul><li>  5% of all company net profit --- forever. Not for a vesting period. Not until a liquidity event. Forever.</li>
+<li>  25% lifetime discount on all KR8TIV services</li>
+<li>  Authenticated on-chain hashes tied to their KIN\'s bootstrap configuration and memory accumulation</li>
+<li>  First access to every new product, feature, and expansion KR8TIV releases</li>
+<li>  The right to transfer their KIN on the secondary market via a clean \$149 rebinding process</li></ul>
+<p>The Genesis collection is the only revenue-participating collection KR8TIV will ever create. Future collections are standard collectibles. Genesis is Genesis.</p>
+<h2>ENTERPRISE PRODUCT</h2>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">KIN Lineage: The Company That Never Forgets</h3>
+<blockquote><p>***The average employee carries 3 to 7 years of institutional knowledge. When they leave, it walks out the door with them. KIN Lineage ensures it never does.***</p></blockquote>
+<p>KIN Lineage is the enterprise expression of the KIN platform. Where KIN Personal is built around a person, KIN Lineage is built around an organization --- its culture, its processes, its brand voice, its customer relationships, and its accumulated operational intelligence.</p>
+<p>KIN Lineage is not a knowledge base. It is not a wiki. It is not an onboarding manual. It is a living AI entity that embodies your company --- and gets smarter, more capable, and more valuable every single day it operates.</p>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">The Problem KIN Lineage Solves</h3>
+<p>Organizational knowledge loss is one of the most expensive, least visible problems in corporate operations. Consider:</p>
+<ul><li>  The Society for Human Resource Management estimates the average cost of replacing an employee at 50-200% of their annual salary</li>
+<li>  According to Gartner, knowledge workers spend an average of 2.5 hours per day searching for information they already have --- or reconstructing knowledge that left with a former colleague</li>
+<li>  Brand voice, customer relationship context, and institutional SOPs are almost never systematically captured --- they exist in the minds of long-tenured employees</li>
+<li>  Every new hire re-learns what the last hire already knew --- a compounding cost invisible in most P&L statements</li></ul>
+<p>KIN Lineage eliminates this category of loss entirely.</p>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">What KIN Lineage Does</h3>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Institutional Memory, On-Chain</h3>
+<p>KIN Lineage is trained on your company\'s complete operational DNA: internal communications, SOPs, brand guidelines, product documentation, customer interaction history, and leadership philosophy. This intelligence is stored in encrypted, authenticated form on the KR8TIV AGI Chain --- immutable, auditable, and permanently owned by the company. When an employee leaves, the knowledge does not.</p>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Intelligent Employee Onboarding</h3>
+<p>New employees interact directly with KIN Lineage from Day 1. Instead of shadowing a colleague for three weeks, they have a conversation. KIN Lineage knows the company\'s history, the team\'s communication style, the unwritten rules, the customer personas, the product roadmap, and the current quarter\'s priorities. It answers questions in the company\'s voice, at any hour, with perfect consistency. What traditionally takes weeks of orientation time compresses into hours.</p>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Departmental AI Operations</h3>
+<p>KIN Lineage can be deployed as a dedicated AI operator across every department:</p>
+<ul><li>  HR & People Operations *First-line responder for policy questions, benefits, performance review scheduling, and onboarding workflows*</li>
+<li>  Legal & Compliance *Surfaces relevant internal policy, flags deviation from documented process, supports contract review with company-specific context*</li>
+<li>  Customer Experience *Handles tier-1 customer interactions with authentic brand voice --- escalates intelligently, never forgets a prior interaction*</li>
+<li>  Sales & Business Development *Maintains relationship context for every prospect, drafts outreach in the company\'s proven voice, tracks follow-up cadence*</li>
+<li>  Marketing & Brand *Generates content that is authentically on-brand --- because it was trained on everything the brand has ever produced*</li>
+<li>  Operations & Finance *Executes routine workflows, surfaces anomalies, manages internal reporting with zero human overhead*</li></ul>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">The On-Chain Advantage</h3>
+<p>KIN Lineage is not a SaaS subscription. It is an on-chain asset. The company owns its KIN Lineage as an NFT --- with all accumulated training, memory, and configuration stored in authenticated hashes on the KR8TIV AGI Chain.</p>
+<p>This has profound implications:</p>
+<ul><li>  The company\'s institutional intelligence has a verifiable, auditable provenance --- it cannot be disputed, overwritten, or lost</li>
+<li>  KIN Lineage appreciates as a company asset: the longer it is trained, the more valuable it becomes --- and this value is reflected on-chain</li>
+<li>  In M&A scenarios, KIN Lineage is a transferable asset with quantifiable value: a company\'s AI operational layer, fully owned and portable</li>
+<li>  For regulated industries --- finance, healthcare, legal --- the immutability of on-chain knowledge hashing provides a compliance infrastructure that traditional software cannot match</li></ul>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Enterprise Pricing Architecture</h3>
+<div class="table-wrapper"><table>
+<tr>
+<th>Package</th>
+<th>Monthly Investment</th>
+<th>Core Offering</th>
+</tr>
+<tr>
+<td>KIN Lineage Starter</td>
+<td>Custom pricing</td>
+<td>1 departmental KIN, 3-month onboarding, dedicated account manager, monthly optimization</td>
+</tr>
+<tr>
+<td>KIN Lineage Professional</td>
+<td>Custom pricing</td>
+<td>Up to 5 departmental KINs, cross-team integration, priority support, quarterly strategic reviews</td>
+</tr>
+<tr>
+<td>KIN Lineage Enterprise</td>
+<td>Custom pricing</td>
+<td>Unlimited departmental KINs, dedicated infrastructure, full API access, SLA guarantees, board-level reporting</td>
+</tr>
+<tr>
+<td>KIN Lineage Industrial</td>
+<td>Strategic partnership</td>
+<td>Critical infrastructure, government, and regulated industry deployment --- custom architecture</td>
+</tr>
+</table></div>
+<p>Enterprise contracts may optionally include a \$KR8TIV token allocation component, allowing organizations to participate in the broader KR8TIV ecosystem --- staking for service fee offsets, governance participation, and ecosystem alignment. This is offered as an option, never a requirement.</p>
+<h2>TOKEN ECONOMICS</h2>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">\$KR8TIV: Revenue Share, Not Speculation</h3>
+<p>Most crypto tokens are speculative instruments. Their value derives from market sentiment, not from underlying revenue. The \$KR8TIV token was designed to be different: a structured, auditable claim on the actual operating revenue of a real AI company.</p>
+<p>This is not a whitepaper promise. It is the architecture. Every dollar KR8TIV earns is subject to the revenue distribution model at the protocol level.</p>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Token Overview</h3>
+<div class="table-wrapper"><table>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+</tr>
+<tr>
+<td>Token Name</td>
+<td>\$KR8TIV</td>
+</tr>
+<tr>
+<td>Total Supply</td>
+<td>1,000,000,000 (1 Billion) --- Fixed</td>
+</tr>
+<tr>
+<td>Blockchain</td>
+<td>Solana (primary); KR8TIV AGI Chain (AI operations layer)</td>
+</tr>
+<tr>
+<td>Distribution Model</td>
+<td>Community-first --- no VC allocation, no insider cliff</td>
+</tr>
+<tr>
+<td>Revenue Share</td>
+<td>75% of company profit to stakers, 5% to Genesis NFT holders</td>
+</tr>
+<tr>
+<td>Staking Mechanism</td>
+<td>Proportional staking rewards from real operating revenue</td>
+</tr>
+<tr>
+<td>Utility</td>
+<td>Service fee payment, governance, ecosystem access, enterprise token allocation</td>
+</tr>
+</table></div>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Revenue Distribution Architecture</h3>
+<p>The revenue distribution model is the most important structural feature of the KR8TIV ecosystem. It is not aspirational --- it is operational. The flow:</p>
+<ul><li>1.  KR8TIV generates operating revenue from: KIN hosting subscriptions, enterprise KIN Lineage contracts, white-glove onboarding fees, API licensing, and future product lines</li>
+<li>2.  Net operating profit is calculated after the 20% operations allocation (infrastructure, development, team, scaling)</li>
+<li>3.  75% of net profit enters the \$KR8TIV staking pool --- distributed to token holders proportionally to their staked position</li>
+<li>4.  5% of net profit is distributed permanently to the 60 Genesis NFT holders --- regardless of their staking activity</li>
+<li>5.  This cycle runs perpetually --- there is no vesting cliff, no lock-up expiry, no sunset clause</li></ul>
+<p>As KR8TIV scales --- from a Genesis consumer product to an enterprise AI platform to a critical infrastructure provider --- the volume of revenue flowing into the staking pool scales with it. Early stakers and Genesis holders are not just early adopters. They are permanent participants in the company\'s financial upside.</p>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Revenue Projections: Illustrative Model</h3>
+<p>The following projections are illustrative, not guaranteed, and are provided to demonstrate the mathematical potential of the staking model at scale.</p>
+<div class="table-wrapper"><table>
+<tr>
+<th>Stage</th>
+<th>Monthly Revenue (Est.)</th>
+<th>Annual Staking Pool (75%)</th>
+<th>Annual Genesis Share (5%)</th>
+</tr>
+<tr>
+<td>Genesis Launch (60 KINs minted)</td>
+<td>\$30,000</td>
+<td>\$270,000</td>
+<td>\$18,000</td>
+</tr>
+<tr>
+<td>Early Scale (500 KIN subscribers)</td>
+<td>\$250,000</td>
+<td>\$2,250,000</td>
+<td>\$150,000</td>
+</tr>
+<tr>
+<td>Growth (2,000 KINs + 10 enterprise)</td>
+<td>\$1,200,000</td>
+<td>\$10,800,000</td>
+<td>\$720,000</td>
+</tr>
+<tr>
+<td>Maturity (10,000 KINs + 50 enterprise)</td>
+<td>\$4,500,000</td>
+<td>\$40,500,000</td>
+<td>\$2,700,000</td>
+</tr>
+</table></div>
+<p>At maturity, the annual staking pool approaches \$40 million --- distributed across all \$KR8TIV stakers. The 60 Genesis NFT holders collectively receive \$2.7 million per year --- in perpetuity. These are not token emissions. These are cash flows from a real operating business, returned to the community that funded its foundation.</p>
+<h2>ROADMAP</h2>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">2026: The Year KIN Becomes Infrastructure</h3>
+<p>KR8TIV ships daily and builds in public. The roadmap below reflects committed development priorities, not aspirational milestones. Every item listed represents engineering work already in motion or directly dependent on the Genesis mint funding.</p>
+<div class="table-wrapper"><table>
+<tr>
+<th>Quarter</th>
+<th>Milestone</th>
+<th>Impact</th>
+</tr>
+<tr>
+<td>Q2 2026</td>
+<td>Genesis Mint --- 60 KINs</td>
+<td>Founding community established; initial revenue flow begins</td>
+</tr>
+<tr>
+<td>Q2 2026</td>
+<td>Solana AGI Blockchain Integration</td>
+<td>On-chain memory and identity layer activated</td>
+</tr>
+<tr>
+<td>Q2 2026</td>
+<td>OpenClaw Fork --- KR8TIV OS</td>
+<td>Proprietary AI orchestration infrastructure; independent of upstream changes</td>
+</tr>
+<tr>
+<td>Q3 2026</td>
+<td>Personalized AI Models (Fine-Tuned)</td>
+<td>Each KIN gets a model fine-tuned to its user --- unprecedented personalization</td>
+</tr>
+<tr>
+<td>Q3 2026</td>
+<td>Enterprise Business Deployment (KIN Lineage)</td>
+<td>B2B revenue channel opens; institutional contracts begin</td>
+</tr>
+<tr>
+<td>Q3 2026</td>
+<td>Companion Models Across Every Industry</td>
+<td>Domain-specific KIN archetypes: medical, legal, financial, educational</td>
+</tr>
+<tr>
+<td>Q4 2026</td>
+<td>\$KR8TIV Token Staking for Service Costs</td>
+<td>Token utility activates --- stakers can use staking rewards to offset hosting fees</td>
+</tr>
+<tr>
+<td>Q4 2026</td>
+<td>Fully Animated Companion App Interfaces</td>
+<td>Consumer-facing product becomes a premium emotional experience</td>
+</tr>
+<tr>
+<td>Q4 2026</td>
+<td>Physical Plush Toys with Embedded Memory</td>
+<td>Physical-digital bridge; KIN becomes a tangible presence</td>
+</tr>
+<tr>
+<td>Q4 2026</td>
+<td>Encrypted Physical Device</td>
+<td>Dedicated KIN hardware --- fully sovereign, no cloud dependency</td>
+</tr>
+<tr>
+<td>Q4 2026</td>
+<td>Cryptographic Bootstrap Hashing</td>
+<td>Full on-chain provenance of KIN memory and configuration --- the NFT becomes a living record</td>
+</tr>
+<tr>
+<td>Q4 2026</td>
+<td>Encrypted Storage</td>
+<td>User data sovereignty complete --- KIN data is fully private and user-controlled</td>
+</tr>
+<tr>
+<td>2027+</td>
+<td>KR8TIV Industrial Division</td>
+<td>Autonomous AI systems for enterprises, governments, and critical infrastructure</td>
+</tr>
+</table></div>
+<p>The AGI fork of Solana is not a distraction from the core product --- it is the infrastructure that makes the core product\'s most important promises possible. Persistent AI state, immutable memory, Python hashing for AI orchestration --- these are capabilities the existing Solana chain was not designed for. KR8TIV is building the foundation it needs rather than compromising the product to fit what already exists.</p>
+<h2>COMPETITIVE LANDSCAPE</h2>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">There Is No Comparable Product</h3>
+<p>The AI assistant market is crowded with tools. KIN is not a tool. The managed AI companion market --- where a human concierge team builds, personalizes, and maintains a bespoke AI agent for you, tied to your on-chain identity, with a structured revenue share for holders --- does not exist. KIN is creating it.</p>
+<div class="table-wrapper"><table>
+<tr>
+<th>Product</th>
+<th>What It Offers</th>
+<th>What It Lacks</th>
+</tr>
+<tr>
+<td>ChatGPT / Claude</td>
+<td>Brilliant generic chatbot, \$20/mo</td>
+<td>Forgets you instantly. No computer control. No personality. You do all the work.</td>
+</tr>
+<tr>
+<td>xCloud / Self-Hosted OpenClaw</td>
+<td>Managed OpenClaw hosting, \$24/mo</td>
+<td>Just a server. No personalization, no onboarding. Requires DevOps knowledge.</td>
+</tr>
+<tr>
+<td>Microsoft Copilot Enterprise</td>
+<td>AI integrated into Office suite</td>
+<td>Generic, not bespoke. No persistent memory. No on-chain ownership. No revenue share.</td>
+</tr>
+<tr>
+<td>Inflection Pi / Character.AI</td>
+<td>Conversational AI companion</td>
+<td>No computer control. No on-chain identity. Subscription only. No investor economics.</td>
+</tr>
+<tr>
+<td>KIN by KR8TIV</td>
+<td>Bespoke AI companion concierge, \$114+/mo</td>
+<td>Nothing. KR8TIV handles everything. The user just talks to their friend.</td>
+</tr>
+</table></div>
+<p>The differentiating factors that no competitor can easily replicate:</p>
+<ul><li>  The white-glove concierge model --- human expertise plus AI capability, delivered as a managed service</li>
+<li>  On-chain ownership --- your KIN is yours, not rented from a tech company that can change its terms</li>
+<li>  Persistent, accumulating memory via Supermemory Pro --- genuine relationship, not a session</li>
+<li>  Multi-model orchestration --- best-in-class capability at all times, regardless of which frontier model leads on any given week</li>
+<li>  Revenue share tokenomics --- investors and users are aligned, not extracted from</li>
+<li>  KIN Lineage --- the enterprise product that turns AI from a cost center into a capital asset</li></ul>
+<h2>THE TEAM</h2>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Built by Operators, Not Theorists</h3>
+<p>KR8TIV was not founded by academics or career VCs. It was founded by someone who has built, operated, and shipped at the intersection of AI, blockchain, and real-world product development --- across multiple ventures, across multiple continents.</p>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Matt Haynes --- Founder & CEO</h3>
+<p>Matt Haynes brings a rare combination of technical depth, product instinct, and community-building experience to KR8TIV. His background spans:</p>
+<ul><li>  Co-Founder, MoonBoots Capital --- early-stage Web3 venture and advisory firm</li>
+<li>  Director of Operations, WORBLI --- enterprise blockchain infrastructure</li>
+<li>  Advisor, Prasaga / SagaChain --- Layer 1 blockchain architecture and tokenomics</li>
+<li>  Blockleaders --- blockchain industry research and content</li>
+<li>  Deep operational experience in Costa Rica\'s emerging crypto and startup ecosystem</li></ul>
+<p>What makes Matt\'s background directly relevant to KIN: he has built community-first products in Web3, understands the architecture of token economics, and has the network to open enterprise and institutional doors. He is not pitching a concept he read about. He is building something he has lived the need for.</p>
+<p>KR8TIV operates as an autonomous AI company --- building with AI, in public, daily. The team\'s structure reflects this: lean, fast, and augmented by the very technology it is selling. KR8TIV built the KIN website in three hours using its own KIN. That is not a marketing claim. That is the proof of concept.</p>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Advisor & Ecosystem Partners</h3>
+<p>KR8TIV is in active development of its advisory network, with particular focus on:</p>
+<ul><li>  Enterprise AI deployment specialists</li>
+<li>  Solana ecosystem technical architects</li>
+<li>  Web3 VC and institutional investor relationships</li>
+<li>  Corporate HR and workforce technology operators</li></ul>
+<p>Advisory board details will be published in advance of the \$KR8TIV token launch and KIN Lineage enterprise rollout.</p>
+<h2>FUNDING & USE OF CAPITAL</h2>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">What We Are Building With Your Investment</h3>
+<p>KR8TIV is currently community-funded. The Genesis mint and \$KR8TIV token ecosystem are the primary funding mechanisms. This section outlines the use of capital across funding scenarios and the value created at each stage.</p>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Genesis Mint (Current Round)</h3>
+<p>The Genesis mint of 60 NFTs at 2.5 to 8.3 SOL per unit represents the founding round. Capital from the Genesis mint funds:</p>
+<ul><li>  Initial KIN deployment and white-glove onboarding infrastructure</li>
+<li>  OpenClaw KR8TIV OS fork --- proprietary agent orchestration layer</li>
+<li>  Supermemory Pro integration and persistent memory architecture</li>
+<li>  Core team operations through Q3 2026</li>
+<li>  Initial \$KR8TIV token launch infrastructure</li></ul>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Strategic Investment Round</h3>
+<p>KR8TIV is seeking strategic capital from investors who understand the intersection of AI infrastructure, consumer products, and blockchain-native economics. Target raise details are available in a separate term sheet. Capital from the strategic round funds:</p>
+<ul><li>  KIN Lineage enterprise product buildout and go-to-market</li>
+<li>  Solana AGI Chain development and launch</li>
+<li>  Personalized fine-tuned model infrastructure (Q3 priority)</li>
+<li>  Business development for enterprise contracts</li>
+<li>  Animated companion app and physical product development (Q4)</li>
+<li>  Marketing and community growth to drive token volume and holder acquisition</li></ul>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Grant Eligibility</h3>
+<p>KR8TIV\'s mission --- open-source AI infrastructure accessible to everyone, community-governed, blockchain-native --- positions it strongly for multiple grant categories:</p>
+<ul><li>  Solana Foundation ecosystem grants --- AGI Chain infrastructure brings direct value to Solana</li>
+<li>  Anthropic and AI safety grants --- open-source, transparent AI deployment with user data sovereignty</li>
+<li>  Government and public sector AI grants --- KIN Lineage Industrial has clear applications in public administration</li>
+<li>  Web3 and DeFi innovation grants --- revenue-share tokenomics as a model for sustainable crypto economics</li>
+<li>  Workforce development grants --- KIN Lineage as an enterprise tool for training, onboarding, and knowledge retention</li></ul>
+<h2>VISION</h2>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Every Human Deserves a Brilliant Mind Working For Them</h3>
+<p>There is a version of the future where AI is the private property of corporations and the technically sophisticated --- a force multiplier for people who are already powerful. KR8TIV exists to build the opposite future.</p>
+<p>The goal --- the actual, stated mission of this company --- is to make the world\'s most powerful AI accessible to every human being on Earth. Your grandmother. Your kid. The single mother running a small business. The employee who has never touched an API and never needs to. The retiree who just wants help navigating the world. Everyone.</p>
+<p>KIN is the bridge.</p>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">The Longer Arc</h3>
+<p>KIN starts as a consumer companion and an enterprise memory system. But the roadmap extends far beyond both.</p>
+<p>The KR8TIV Industrial Division --- announced but not yet detailed --- will bring autonomous AI systems to enterprises, governments, and critical infrastructure. Open-source. Accessible. Every industry.</p>
+<p>The AGI Chain is not just infrastructure for KIN. It is a purpose-built layer for the next generation of AI applications --- applications that require persistent state, immutable memory, and Python-native orchestration that no existing chain can provide cleanly. KR8TIV is building the rails, not just a train.</p>
+<p>The physical encrypted device --- a dedicated KIN hardware unit --- represents the final expression of the sovereignty promise: your KIN, running on your hardware, with no cloud dependency, no corporate intermediary, no terms of service that can change overnight.</p>
+<blockquote><p>***We are not building software. We are building a new kind of relationship between humans and intelligence. And it will outlast all of us.***</p></blockquote>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Why Now</h3>
+<p>The window for this product is open. The models are capable enough. The infrastructure is mature enough. The consumer appetite is there. The enterprise need is massive and unaddressed. The on-chain primitives exist. And critically --- the managed AI concierge category has not yet been claimed by any major player.</p>
+<p>The company that establishes the standard for bespoke, managed, on-chain AI companions in 2026 will own that category for a decade. KR8TIV is that company. KIN is that standard.</p>
+<p>The question is not whether this gets built. The question is who builds it, and who was there at the beginning.</p>
+<h2>NEXT STEPS</h2>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Join the Genesis</h3>
+<p>KR8TIV is not looking for passive capital. We are looking for investors who understand that AI, blockchain, and community-first economics are not separate bets --- they are one thesis. The KIN ecosystem is the expression of that thesis, and the Genesis round is the moment to be part of its foundation.</p>
+<div class="table-wrapper"><table>
+<tr>
+<th>Entry Point</th>
+<th>What You Get</th>
+</tr>
+<tr>
+<td>Genesis NFT (Egg --- 2.5 SOL)</td>
+<td>5% net profit share, 1% SOL rewards, 25% lifetime service discount, founding community status</td>
+</tr>
+<tr>
+<td>Genesis NFT (Hatchling --- 5.3 SOL)</td>
+<td>5% net profit share, 2% SOL rewards, 25% lifetime service discount, founding community status</td>
+</tr>
+<tr>
+<td>Genesis NFT (Elder --- 8.3 SOL)</td>
+<td>5% net profit share, 3% SOL rewards, 25% lifetime service discount, founding community status</td>
+</tr>
+<tr>
+<td>\$KR8TIV Token Staking</td>
+<td>75% of company profit distributed proportionally to stakers --- permanent, recurring, real</td>
+</tr>
+<tr>
+<td>Strategic Investment</td>
+<td>Direct equity or token allocation --- contact team for term sheet and detailed financials</td>
+</tr>
+</table></div>
+<h3 style="color: #E5E7EB; font-size: 1.5rem; font-weight: 600; margin-top: 2rem; margin-bottom: 1rem;">Contact</h3>
+<p>For investment inquiries, enterprise partnership discussions, or grant applications:</p>
+<p>Website: meetyourkin.com \| kr8tiv.ai</p>
+<p>Twitter/X: \@kr8tivai \| \@meetyourkin</p>
+<p>Telegram: t.me/kr8tivaisystems</p>
+<p>LinkedIn: linkedin.com/company/kr8tivai</p>
+<p>*This document is confidential and intended for qualified investors and strategic partners. All financial projections are illustrative. Past performance of related markets does not guarantee future results. Cryptocurrency and NFT investments carry significant risk. Please review full terms at meetyourkin.com/terms.html.*</p>
+<p>KIN by KR8TIV AI --- Surfing the Singularity --- © 2026 KR8TIV AI. All rights reserved.</p>
+
+</main>
+<footer>
+    <img src="../assets/kr8tiv-wordmark.png" alt="KR8TIV AI">
+    <p>Confidential — Q2 2026. All rights reserved.</p>
+</footer>
+</body></html>
