@@ -285,9 +285,11 @@ def process_markdown():
     html_parts.append("""
 <header class="hero">
     <div class="hero-overlay"></div>
-    <nav class="hero-nav">
+    <nav class="hero-nav" style="align-items: center;">
         <img src="./assets/kin-logo-mark.png" alt="KIN Logo">
-        <img src="./assets/kr8tiv-wordmark.png" alt="KR8TIV Wordmark">
+        <div>
+            <a href="pitch_deck.html" style="color: #FFF; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); padding: 8px 16px; text-decoration: none; border-radius: 20px; font-weight: 600; font-size: 0.9rem; transition: all 0.3s; backdrop-filter: blur(5px);">View Pitch Deck &rarr;</a>
+        </div>
     </nav>
     <div class="hero-content">
         <h1 class="hero-title">KIN</h1>
