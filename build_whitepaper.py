@@ -190,15 +190,15 @@ def process_markdown():
         elif line_str.startswith('* '):
             # simple bold parsing inside list
             text = line_str[2:]
-            text = re.sub(r'\\*\\*(.*?)\\*\\*', r'<strong>\\1</strong>', text)
+            text = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', text)
             html_parts.append(f'<ul><li>{text}</li></ul>')
-        elif bool(re.match(r'^\\d+\\.\\s+', line_str)):
+        elif bool(re.match(r'^\d+\.\s+', line_str)):
             text = line_str
-            text = re.sub(r'\\*\\*(.*?)\\*\\*', r'<strong>\\1</strong>', text)
+            text = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', text)
             html_parts.append(f'<ul><li>{text}</li></ul>')
         else:
             text = line_str
-            text = re.sub(r'\\*\\*(.*?)\\*\\*', r'<strong>\\1</strong>', text)
+            text = re.sub(r'\*\*(.*?)\*\*', r'<strong>\1</strong>', text)
             html_parts.append(f'<p>{text}</p>')
                 
     html_parts.append("""
