@@ -288,6 +288,7 @@ def process_markdown():
     <nav class="hero-nav" style="align-items: center;">
         <img src="./assets/kin-logo-mark.png" alt="KIN Logo">
         <div style="display:flex; gap: 1rem;">
+            <a href="one_pager.html" style="color: #FFF; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 8px 16px; text-decoration: none; border-radius: 20px; font-weight: 600; font-size: 0.9rem; transition: all 0.3s; backdrop-filter: blur(5px);">One-Pager &rarr;</a>
             <a href="whitepaper.html" style="color: #FFF; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); padding: 8px 16px; text-decoration: none; border-radius: 20px; font-weight: 600; font-size: 0.9rem; transition: all 0.3s; backdrop-filter: blur(5px);">Whitepaper &rarr;</a>
             <a href="pitch_deck.html" style="color: #FFF; background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.3); padding: 8px 16px; text-decoration: none; border-radius: 20px; font-weight: 600; font-size: 0.9rem; transition: all 0.3s; backdrop-filter: blur(5px);">View Pitch Deck &rarr;</a>
         </div>
